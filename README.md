@@ -19,5 +19,5 @@ This repository contains the source code for a web-based inventory management sy
   <img src="file:///C:/Users/Admin/Desktop/inventory-management-system-main/assets/images/Item%20Added.png" width="650vw">
   <br>A message dialog pops up when an item needs to be added, updated or deleted. The total price is automatically calculated based on the quantity and unit price.<br>
 - ### Delete Item
-  <img src="file:///C:/Users/Admin/Desktop/inventory-management-system-main/assets/images/Deleting%20Item.png" width="650vw">
+  <img src="https://github.com/MrKyDev/Simple-Inventory-System/blob/main/assets/images/Deleting%20Item.png?raw=true" width="650vw">
 
