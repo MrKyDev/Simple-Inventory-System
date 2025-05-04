@@ -21,116 +21,6 @@
 	<link rel="icon" type="image/x-icon" href="assets/images/Favicon.png">
 	<script src="js/jquery.min.js"></script>
 	<script src="js/datatables.min.js"></script>
-	<script type="text/javascript">
-		
-		$(document).ready( function () {
-			var dataSrc = "";
-		
-			var datatable = $('#myTable').DataTable( {
-				data : dataSrc,
-				columns: [
-					null,
-					null,
-					null,
-					null,
-					null,
-					{
-						data: null,
-						className: "dt-center editor-edit",
-						defaultContent: '<i class="fas fa-pencil-alt" style="cursor: pointer;"/>',
-						orderable: false
-					},
-					{
-						data: null,
-						className: "dt-center editor-delete",
-						defaultContent: '<i class="fas fa-trash-alt" style="cursor: pointer;"/>',
-						orderable: false
-					}
-				],
-				"scrollY": "65vh",
-				"scrollCollapse": true,
-				"paging": false,
-				"info": false,
-				"buttons": true,
-				language: { 
-					search: "",
-					searchPlaceholder: '🔍︎    Search inventory',
-					"emptyTable":     "Please select 'LOAD DATA' to load an existing database file"
-				},
-				"dom": '<"pull-left"f><"pull-right"B>tip',
-				buttons: [
-					{
-						text: 'LOAD DATA'
-					}
-				]
-			} );
-			
-			var buttonShow = document.getElementsByTagName('button');
-			for(var i=0; i<buttonShow.length; i++){
-				if(buttonShow[i].innerHTML == '<span>ADD NEW ITEM</span>'){
-					 buttonShow[i].classList.add("add_button");
-					 buttonShow[i].hidden = true;
-				} else if (buttonShow[i].innerHTML == '<span>SAVE DATA</span>'){
-					 buttonShow[i].classList.add("data_button");
-					 buttonShow[i].hidden = true;
-				} else if (buttonShow[i].innerHTML == '<span>LOAD DATA</span>'){
-					 buttonShow[i].classList.add("data_button");
-					 buttonShow[i].setAttribute("onclick", "document.getElementById('upload_data').click();");
-				} else if (buttonShow[i].innerHTML == '<span>NEW DATA</span>'){
-					 buttonShow[i].classList.add("add_button");
-				}
-			}
-			
-			function readSingleFile(e) {
-			  var file = e.target.files[0];
-			  if (!file) {
-				return;
-			  }
-			  var reader = new FileReader();
-			  reader.onload = function(e) {
-				var contents = e.target.result;
-				displayContents(contents);
-			  };
-			  reader.readAsText(file);
-			}
-
-			function displayContents(contents) {
-			  dataSrc = JSON.parse(contents.split('"body":')[1].split('}')[0]);
-			  $('#myTable').dataTable().fnClearTable();
-			  $('#myTable').dataTable().fnAddData(dataSrc);
-			  for(var i=0; i<buttonShow.length; i++){
-				if(buttonShow[i].innerHTML == '<span>ADD NEW ITEM</span>'){
-					 buttonShow[i].hidden = false;
-				} else if (buttonShow[i].innerHTML == '<span>SAVE DATA</span>'){
-					 buttonShow[i].hidden = false;
-				} else if (buttonShow[i].innerHTML == '<span>LOAD DATA</span>'){
-					 buttonShow[i].hidden = true;
-				} else if (buttonShow[i].innerHTML == '<span>NEW DATA</span>'){
-					 buttonShow[i].hidden = true;
-				}
-			  }
-			  $('#empty_animation').attr("hidden",true);
-			  document.getElementById('upload_data').value = "";
-			}
-
-			document.getElementById('upload_data')
-			  .addEventListener('change', readSingleFile, false);
-			  
-			function getSubstring(string, char1, char2) {
-			  return string.slice(
-				string.indexOf(char1) + 1,
-				string.lastIndexOf(char2),
-			  );
-			}
-			
-			$('.menu_button').hover(function(){
-				$(this).find(".square_bg").addClass("menu_select_hover");
-			  }, function(){
-				$(this).find(".square_bg").removeClass("menu_select_hover");
-			});
-			
-		} );
-	</script>
 </head>
 
 <body id="page-top" style="background-color: #676565fa;">
@@ -139,22 +29,23 @@
             <div id="content" style="height:100vh;">
                 <div class="container-fluid p-0">
 
+                    <!--Button Menu-->
 					<!--Product Inventory Button-->
 					<div class="row">
 						<div class="col-1 p-0">
 							<div class="row" style="margin-top: 68px">
-								<span class="fa-stack fa-2x menu_button" style="margin: auto; cursor: pointer;">
-								  <i class="fas fa-square fa-stack-1x square_bg" style="color:rgba(0,0,0,0.2); font-size: calc(2.3vw + 2.3vh); transition: 0.3s;"></i>
-								  <i class="far fa-list-alt fa-stack-1x" style="color: rgba(255,255,255,1); font-size: calc(1vw + 1vh);"></i>
-								</span>
+								<span class="fa-stack fa-2x menu_button" data-page="index.html" onclick="window.location.href='index.html';" style="margin: auto; cursor: pointer;">
+                                    <i class="fas fa-square fa-stack-1x square_bg" style="font-size: calc(2.3vw + 2.3vh);"></i>
+                                    <i class="far fa-list-alt fa-stack-1x" style="font-size: calc(1vw + 1vh); color: white;"></i>
+                                  </span>
 							</div>
 
 							<!--Graph Button-->
 							<div class="row" style="margin-top: 10px">
-								<span class="fa-stack fa-2x menu_button" style="margin: auto; cursor: pointer;" onclick="window.location.href='chart.html';">
-								  <i class="fas fa-square fa-stack-1x square_bg" style="color:rgba(0,0,0,0); font-size: calc(2.3vw + 2.3vh); transition: 0.3s;"></i>
-								  <i class="far fa-chart-bar fa-stack-1x" style="color: rgba(255,255,255,1); font-size: calc(1vw + 1vh);"></i>
-								</span>
+                                <span class="fa-stack fa-2x menu_button" data-page="chart.html" onclick="window.location.href='chart.html';" style="margin: auto; cursor: pointer;">
+                                    <i class="fas fa-square fa-stack-1x square_bg" style="font-size: calc(2.3vw + 2.3vh);"></i>
+                                    <i class="far fa-chart-bar fa-stack-1x" style="font-size: calc(1vw + 1vh); color: white;"></i>
+                                  </span>
 							  </div>							  
 
 							<!--Calendar Button-->
@@ -173,6 +64,7 @@
 								</span>
 							</div>
 						</div>
+                        <!--End of Button Menu-->
 
                         <!--Chart Display-->
                         <div class="col-11 p-0">
@@ -184,29 +76,10 @@
                                       <span id="title" style="font-size: calc(0.8vw + 0.8vh); color:rgb(0,0,0); font-family: Nunito;">Chart Graph Display</span>
                                     </div>
                                   </div>
-                                  <div class="col" style="margin-right: 70px; margin-top: auto; margin-bottom: auto; text-align: right;">
-                                    <img src="assets/images/you logo.png" style="height: 4.7vh;" width="20%">
-                                  </div>
                                 </div>
-                        
-                                <div class="row" style="margin-top: 10px">
-                                  <span class="fa-stack fa-2x menu_button" style="margin: auto; cursor: pointer;" onclick="toggleChart();">
-                                    <i class="fas fa-square fa-stack-1x square_bg" style="color:rgba(0,0,0,0); font-size: calc(2.3vw + 2.3vh); transition: 0.3s;"></i>
-                                    <i class="far fa-chart-bar fa-stack-1x" style="color: rgba(255,255,255,1); font-size: calc(1vw + 1vh);"></i>
-                                  </span>
-                                </div>
-                        
-                                <!-- Chart Container (Initially Hidden) -->
-                                <div id="chartContainer" style="display: none; margin-top: 20px; text-align: center;">
-                                  <canvas id="myChart" style="width: 100%; height: 300px;"></canvas>
-                                </div>
-                        
-                                <!-- Table for Product Inventory -->
-                                
-                                  <div class="col" style="margin-left: 2.6vw; margin-top: 20px; margin-bottom: 13px; margin-right: 55px">
-                                    <table id="myTable" class="row-border hover" style="font-size: calc(0.6vw + 0.6vh); font-family: Nunito; color: black;">
-                                    </table>
-                                  
+
+                                <div class="row" style="margin: auto;" id="empty_animation">
+                                    <img src="assets/images/empty.gif" style="height: 50vh;">  
                                 </div>
                               </div>
                             </div>

@@ -34,3 +34,13 @@ font-family: 'Nunito', sans-serif;
       display: none;
       text-align: center;
     }
+
+    .menu_button.active .square_bg {
+        color: rgba(0, 0, 0, 0.4); /* background square gets darker */
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); /* optional glow */
+        border-radius: 5px;
+      }
+      
+      .menu_button.active i.fa-stack-1x {
+        color: #00aced !important; /* icon color changes */
+      }
