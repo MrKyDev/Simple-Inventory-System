@@ -322,102 +322,6 @@
 						</div>
 					  </div>
 					</div>
-					
-					<!-- Modal For Add Confirmation -->
-					<div class="modal fade" id="addConfirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-						  <div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel" style="font-size: calc(0.8vw + 0.8vh); color:rgb(0,0,0); font-family: Nunito; padding-top: 3px; padding-bottom: 3px; padding-left: 8px; font-weight: bold;">Add Confirmation</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="padding-top: 3px; padding-bottom: 3px; padding-right: 20px;"></button>
-						  </div>
-						  <div class="modal-body" style="font-size: calc(0.7vw + 0.7vh); color:rgb(0,0,0); font-family: Nunito; padding-left: 24px;">
-						A new product has been successfully added.
-						  </div>
-						  <div class="modal-footer">
-							<button type="button" class="modal_button" data-bs-dismiss="modal">OK</button>
-						  </div>
-						</div>
-					  </div>
-					</div>
-					
-					<!-- Modal For Editing -->
-					<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered modal-lg">
-						<div class="modal-content">
-						  <div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel" style="font-size: calc(0.8vw + 0.8vh); color:rgb(0,0,0); font-family: Nunito; padding-top: 3px; padding-bottom: 3px; padding-left: 8px; font-weight: bold;">Edit Data</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="padding-top: 3px; padding-bottom: 3px; padding-right: 20px;"></button>
-						  </div>
-						  <div class="modal-body" style="font-size: calc(0.6vw + 0.6vh); color:rgb(0,0,0); font-family: Nunito; padding-left: 24px;">
-							<form id="edit_data" class="needs-validation">
-								<div class="form-group mb-3">
-									<label for="itemname" class="mb-1">Item Name</label>
-									<input type="text" class="form-control" id="itemname" placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-								<div class="form-group mb-3">
-									<label for="quantity" class="mb-1">Quantity</label>
-									<input type="text" class="form-control" id="quantity" placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-								<div class="form-group mb-3">
-									<label for="type" class="mb-1">Type</label>
-									<input type="text" class="form-control" id="type" placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-								<div class="form-group mb-3">
-									<label for="unit_price" class="mb-1">Unit Price</label>
-									<input type="text" class="form-control" id="unit_price" placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-								<div class="form-group">
-									<label for="total_price" class="mb-1">Total Price</label>
-									<input type="text" class="form-control" id="total_price" disabled placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-							</form>
-						  </div>
-						  <div class="modal-footer">
-							<button class="modal_button" id="update_button" type="submit" form="edit_data">Update</button>
-						  </div>
-						</div>
-					  </div>
-					</div>
-					
-					<!-- Modal For Adding -->
-					<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered modal-lg">
-						<div class="modal-content">
-						  <div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel" style="font-size: calc(0.8vw + 0.8vh); color:rgb(0,0,0); font-family: Nunito; padding-top: 3px; padding-bottom: 3px; padding-left: 8px; font-weight: bold;">Add New Item</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="padding-top: 3px; padding-bottom: 3px; padding-right: 20px;"></button>
-						  </div>
-						  <div class="modal-body" style="font-size: calc(0.6vw + 0.6vh); color:rgb(0,0,0); font-family: Nunito; padding-left: 24px;">
-							<form id="add_data" class="needs-validation">
-								<div class="form-group mb-3">
-									<label for="itemname" class="mb-1">Item Name</label>
-									<input type="text" class="form-control" id="itemname" placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-								<div class="form-group mb-3">
-									<label for="quantity" class="mb-1">Quantity</label>
-									<input type="text" class="form-control" id="quantity" placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-								<div class="form-group mb-3">
-									<label for="type" class="mb-1">Type</label>
-									<input type="text" class="form-control" id="type" placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-								<div class="form-group mb-3">
-									<label for="unit_price" class="mb-1">Unit Price</label>
-									<input type="text" class="form-control" id="unit_price" value="RM " placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-								<div class="form-group">
-									<label for="total_price" class="mb-1">Total Price</label>
-									<input type="text" class="form-control" id="total_price" value="RM " disabled placeholder="Please enter a value." required style="font-size: calc(0.65vw + 0.65vh); color:rgb(0,0,0); font-family: Nunito;">
-								</div>
-							</form>
-						  </div>
-						  <div class="modal-footer">
-							<button class="modal_button" id="add_button" type="submit" form="add_data">Add</button>
-						  </div>
-						</div>
-					  </div>
-					</div>
 
 					<!--Product Inventory Button-->
 					<div class="row">
@@ -454,44 +358,43 @@
 							</div>
 						</div>
 
-						<!--Display of Product Inventory-->
-						<div class="col-11 p-0">
-							<div class="row">
-								<div class="card p-0" style="background-color: white; border-radius: 15px 0px 0px 15px; border: none; box-shadow: 0 0px 6px 2px rgba(0,0,0,0.2); height:100vh;">
-									<div class="row">
-										<div class="col" style="margin-left: 2.6vw; margin-top: 25px; margin-bottom: 20px;">
-											<div class="fw-bold text-xs"><span id="title" style="font-size: calc(0.8vw + 0.8vh); color:rgb(0,0,0); font-family: Nunito;">Product Inventory</span></div>
-										</div>
-										<div class="col" style="margin-right: 70px; margin-top: auto; margin-bottom: auto; text-align: right;">
-											<img src="assets/images/you logo.png" style="height: 4.7vh;" width="20%">
-										</div>
-									</div>
-									<input type="file" name="data" id="upload_data" style="display: none;"/>
-									<div style="border-bottom: 2px solid  rgba(0,0,0,0.1); width: 100%;"></div>
-									<div class="row">
-										<div class="col" style="margin-left: 2.6vw; margin-top: 20px; margin-bottom: 13px; margin-right: 55px">
-											<table id="myTable" class="row-border hover" style="font-size: calc(0.6vw + 0.6vh); font-family: Nunito; color: black;">
-												<thead>
-													<tr>
-														<th>Item Name</th>
-														<th>Quantity</th>
-														<th>Type</th>
-														<th>Unit Price</th>
-														<th>Total Price</th>
-														<th></th>
-														<th></th>
-													</tr>
-												</thead>
-											</table>
-										</div>
-									</div>
-									<div class="row" style="margin: auto;" id="empty_animation">
-										<img src="assets/images/empty.gif" style="height: 50vh;">
-									</div>
-								</div>
-							</div>
-						</div>	
-							
+                        <!--Chart Display-->
+                        <div class="col-11 p-0">
+                            <div class="row">
+                              <div class="card p-0" style="background-color: white; border-radius: 15px 0px 0px 15px; border: none; box-shadow: 0 0px 6px 2px rgba(0,0,0,0.2); height:100vh;">
+                                <div class="row">
+                                  <div class="col" style="margin-left: 2.6vw; margin-top: 25px; margin-bottom: 20px;">
+                                    <div class="fw-bold text-xs">
+                                      <span id="title" style="font-size: calc(0.8vw + 0.8vh); color:rgb(0,0,0); font-family: Nunito;">Chart Graph Display</span>
+                                    </div>
+                                  </div>
+                                  <div class="col" style="margin-right: 70px; margin-top: auto; margin-bottom: auto; text-align: right;">
+                                    <img src="assets/images/you logo.png" style="height: 4.7vh;" width="20%">
+                                  </div>
+                                </div>
+                        
+                                <div class="row" style="margin-top: 10px">
+                                  <span class="fa-stack fa-2x menu_button" style="margin: auto; cursor: pointer;" onclick="toggleChart();">
+                                    <i class="fas fa-square fa-stack-1x square_bg" style="color:rgba(0,0,0,0); font-size: calc(2.3vw + 2.3vh); transition: 0.3s;"></i>
+                                    <i class="far fa-chart-bar fa-stack-1x" style="color: rgba(255,255,255,1); font-size: calc(1vw + 1vh);"></i>
+                                  </span>
+                                </div>
+                        
+                                <!-- Chart Container (Initially Hidden) -->
+                                <div id="chartContainer" style="display: none; margin-top: 20px; text-align: center;">
+                                  <canvas id="myChart" style="width: 100%; height: 300px;"></canvas>
+                                </div>
+                        
+                                <!-- Table for Product Inventory -->
+                                
+                                  <div class="col" style="margin-left: 2.6vw; margin-top: 20px; margin-bottom: 13px; margin-right: 55px">
+                                    <table id="myTable" class="row-border hover" style="font-size: calc(0.6vw + 0.6vh); font-family: Nunito; color: black;">
+                                    </table>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
 					</div>
                 </div>
             </div>
