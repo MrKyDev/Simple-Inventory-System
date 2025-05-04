@@ -55,163 +55,15 @@
 				language: { 
 					search: "",
 					searchPlaceholder: '🔍︎    Search inventory',
-					"emptyTable":     "Please select 'LOAD DATA' to load an existing database file or 'NEW DATA' to create a new one."
+					"emptyTable":     "Please select 'LOAD DATA' to load an existing database file"
 				},
 				"dom": '<"pull-left"f><"pull-right"B>tip',
 				buttons: [
-					{
-						text: 'ADD NEW ITEM',
-						action: function ( e, dt, node, config ) {
-							$('#addModal').modal('toggle');
-						}
-					},
-					{
-						text: 'SAVE DATA',
-						action: function ( e, dt, button, config ) {
-							var data = dt.buttons.exportData();
-		 
-							$.fn.dataTable.fileSave(
-								new Blob( [ JSON.stringify( data ) ] ),
-								'DB.txt'
-							);
-						}
-					},
-					{
-						text: 'NEW DATA',
-						action: function ( e, dt, node, config ) {
-							$('#addModal').modal('toggle');
-						}
-					},
 					{
 						text: 'LOAD DATA'
 					}
 				]
 			} );
-			
-			var a = null;
-			var b = null;
-			
-			function delete_Row(a){
-				datatable.row( $(a).parents('tr') ).remove().draw();
-				if (datatable.rows().count() == 0){
-					for(var i=0; i<buttonShow.length; i++){
-						if(buttonShow[i].innerHTML == '<span>ADD NEW ITEM</span>'){
-							 buttonShow[i].hidden = true;
-						} else if (buttonShow[i].innerHTML == '<span>SAVE DATA</span>'){
-							 buttonShow[i].hidden = true;
-						} else if (buttonShow[i].innerHTML == '<span>LOAD DATA</span>'){
-							 buttonShow[i].hidden = false;
-						} else if (buttonShow[i].innerHTML == '<span>NEW DATA</span>'){
-							 buttonShow[i].hidden = false;
-						}
-						
-					}
-					$('#empty_animation').attr("hidden",false);
-				}
-			};
-			
-			$('#myTable').on('click', 'td.editor-delete', function () {
-				a = this;
-				$('#deleteModal').modal('toggle');
-				$('#deleteModal').on('click', '#delete_button', function () {
-					delete_Row(a);
-				} );
-			} );
-			
-			$('#myTable').on('click', 'td.editor-edit', function () {
-				b = this;
-				$('#edit_data').find('input[id="itemname"]').val(datatable.row(b).data()[0]);
-				$('#edit_data').find('input[id="quantity"]').val(datatable.row(b).data()[1]);
-				$('#edit_data').find('input[id="type"]').val(datatable.row(b).data()[2]);
-				$('#edit_data').find('input[id="unit_price"]').val(datatable.row(b).data()[3]);
-				$('#edit_data').find('input[id="total_price"]').val(datatable.row(b).data()[4]);
-				$('#editModal').modal('toggle');
-			} );
-			
-			$('#edit_data').on('submit', function () {
-				event.preventDefault();
-				var final_quantity = parseFloat($('#edit_data').find('input[id="quantity"]').val().replace(/[^0-9.]/g,''));
-				$('#edit_data').find('input[id="quantity"]').val(final_quantity.toFixed(0));
-				var final_unit = parseFloat($('#edit_data').find('input[id="unit_price"]').val().replace(/[^0-9.]/g,''));
-				$('#edit_data').find('input[id="unit_price"]').val('RM '+final_unit.toFixed(2));
-				var newData = [$('#edit_data').find('input[id="itemname"]').val(),$('#edit_data').find('input[id="quantity"]').val(),$('#edit_data').find('input[id="type"]').val(),$('#edit_data').find('input[id="unit_price"]').val(),$('#edit_data').find('input[id="total_price"]').val()];
-				datatable.row(b).data(newData).draw();
-				$('#editModal').modal('toggle');
-				$('#updateConfirmationModal').modal('toggle');
-			} );
-
-			$('#add_data').on('submit', function () {
-				event.preventDefault();
-				var final_quantity = parseFloat($('#add_data').find('input[id="quantity"]').val().replace(/[^0-9.]/g,''));
-				$('#add_data').find('input[id="quantity"]').val(final_quantity.toFixed(0));
-				var final_unit = parseFloat($('#add_data').find('input[id="unit_price"]').val().replace(/[^0-9.]/g,''));
-				$('#add_data').find('input[id="unit_price"]').val('RM '+final_unit.toFixed(2));
-				var newData = [$('#add_data').find('input[id="itemname"]').val(),$('#add_data').find('input[id="quantity"]').val(),$('#add_data').find('input[id="type"]').val(),$('#add_data').find('input[id="unit_price"]').val(),$('#add_data').find('input[id="total_price"]').val()];
-				datatable.row.add(newData).draw();
-				$('#addModal').modal('toggle');
-				$('#addConfirmationModal').modal('toggle');
-				for(var i=0; i<buttonShow.length; i++){
-					if(buttonShow[i].innerHTML == '<span>ADD NEW ITEM</span>'){
-						 buttonShow[i].hidden = false;
-					} else if (buttonShow[i].innerHTML == '<span>SAVE DATA</span>'){
-						 buttonShow[i].hidden = false;
-					} else if (buttonShow[i].innerHTML == '<span>LOAD DATA</span>'){
-						 buttonShow[i].hidden = true;
-					} else if (buttonShow[i].innerHTML == '<span>NEW DATA</span>'){
-						 buttonShow[i].hidden = true;
-					}
-				}
-				$('#empty_animation').attr("hidden",true);
-				$('#add_data').find('input[id="itemname"]').val('');
-				$('#add_data').find('input[id="quantity"]').val('');
-				$('#add_data').find('input[id="type"]').val('');
-				$('#add_data').find('input[id="unit_price"]').val('');
-				$('#add_data').find('input[id="total_price"]').val('');
-			} );
-			
-			$('#edit_data').find('input[id="quantity"]').bind('keyup', function(){
-				var quantity_no = $(this).val().replace(/[^0-9.]/g,'');
-				$(this).val(quantity_no);
-				if(quantity_no.replace(/[^0-9.]/g,'') != ''){
-					var unit = $('#edit_data').find('input[id="unit_price"]').val().replace(/[^0-9.]/g,'');					
-					var total = unit * quantity_no;
-					$('#edit_data').find('input[id="total_price"]').val('RM '+total.toFixed(2));
-				}
-			});
-			
-			$('#edit_data').find('input[id="unit_price"]').bind('keyup', function(){
-				var sanitized = $(this).val().replace(/[^0-9.]/g,'');
-				$(this).val('RM '+sanitized);
-				var quantity_no = $('#edit_data').find('input[id="quantity"]').val();
-				if(quantity_no.replace(/[^0-9.]/g,'') == ''){
-					$('#edit_data').find('input[id="quantity"]').val(0);
-					quantity_no = 0;
-				}
-				var total = sanitized * quantity_no;
-				$('#edit_data').find('input[id="total_price"]').val('RM '+total.toFixed(2));
-			});
-			
-			$('#add_data').find('input[id="quantity"]').bind('keyup', function(){
-				var quantity_no = $(this).val().replace(/[^0-9.]/g,'');
-				$(this).val(quantity_no);
-				if(quantity_no.replace(/[^0-9.]/g,'') != ''){
-					var unit = $('#add_data').find('input[id="unit_price"]').val().replace(/[^0-9.]/g,'');					
-					var total = unit * quantity_no;
-					$('#add_data').find('input[id="total_price"]').val('RM '+total.toFixed(2));
-				}
-			});
-			
-			$('#add_data').find('input[id="unit_price"]').bind('keyup', function(){
-				var sanitized = $(this).val().replace(/[^0-9.]/g,'');
-				$(this).val('RM '+sanitized);
-				var quantity_no = $('#add_data').find('input[id="quantity"]').val();
-				if(quantity_no.replace(/[^0-9.]/g,'') == ''){
-					$('#add_data').find('input[id="quantity"]').val(0);
-					quantity_no = 0;
-				}
-				var total = sanitized * quantity_no;
-				$('#add_data').find('input[id="total_price"]').val('RM '+total.toFixed(2));
-			});
 			
 			var buttonShow = document.getElementsByTagName('button');
 			for(var i=0; i<buttonShow.length; i++){
@@ -286,42 +138,6 @@
         <div class="d-flex flex-column" id="content-wrapper" style="background-color: transparent;">
             <div id="content" style="height:100vh;">
                 <div class="container-fluid p-0">
-
-					<!-- Modal For Deleting -->
-					<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-						  <div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel" style="font-size: calc(0.8vw + 0.8vh); color:rgb(0,0,0); font-family: Nunito; padding-top: 3px; padding-bottom: 3px; padding-left: 8px; font-weight: bold;">Delete Confirmation</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="padding-top: 3px; padding-bottom: 3px; padding-right: 20px;"></button>
-						  </div>
-						  <div class="modal-body" style="font-size: calc(0.7vw + 0.7vh); color:rgb(0,0,0); font-family: Nunito; padding-left: 24px;">
-							Are you sure you wish to remove this record?
-						  </div>
-						  <div class="modal-footer">
-							<button type="button" class="modal_button" data-bs-dismiss="modal" id="delete_button">Delete</button>
-						  </div>
-						</div>
-					  </div>
-					</div>
-					
-					<!-- Modal For Update Confirmation -->
-					<div class="modal fade" id="updateConfirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-						  <div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel" style="font-size: calc(0.8vw + 0.8vh); color:rgb(0,0,0); font-family: Nunito; padding-top: 3px; padding-bottom: 3px; padding-left: 8px; font-weight: bold;">Update Confirmation</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="padding-top: 3px; padding-bottom: 3px; padding-right: 20px;"></button>
-						  </div>
-						  <div class="modal-body" style="font-size: calc(0.7vw + 0.7vh); color:rgb(0,0,0); font-family: Nunito; padding-left: 24px;">
-							Item has been successfully updated.
-						  </div>
-						  <div class="modal-footer">
-							<button type="button" class="modal_button" data-bs-dismiss="modal">OK</button>
-						  </div>
-						</div>
-					  </div>
-					</div>
 
 					<!--Product Inventory Button-->
 					<div class="row">
